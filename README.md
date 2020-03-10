@@ -1,2 +1,3 @@
 # HeroesNode
-Microserviço Heroes NodeJS
+Microserviço Heroes NodeJS.
+Apenas para treinamento.
