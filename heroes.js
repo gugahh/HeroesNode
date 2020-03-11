@@ -59,6 +59,18 @@ const powers = [
     res.send(powers);
   });
 
+  app.get('/hero/**', (req, res) => {
+    const heroId = parseInt(req.params[0]);
+    const foundHero = heroes.find(subject => subject.id === heroId);
+    if (foundHero != null) {
+      res.send(foundHero);
+    } else {
+      res.statusCode(404);
+      res.send("Herói não foi encontrado");
+    }
+    
+  });
+
   app.post('/hero/**', (req, res) => {
     const heroId = parseInt(req.params[0]);
     const foundHero = heroes.find(subject => subject.id === heroId);
