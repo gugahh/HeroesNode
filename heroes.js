@@ -60,8 +60,9 @@ const powers = [
   });
 
   app.get('/hero/**', (req, res) => {
-    console.log('Obtendo herói pelo id');
     const heroId = parseInt(req.params[0]);
+    console.log('Obtendo herói pelo id (Método GET) - id: ' + heroId);
+
     const foundHero = heroes.find(subject => subject.id === heroId);
     if (foundHero != null) {
       res.send(foundHero);
@@ -74,12 +75,14 @@ const powers = [
 
   app.post('/hero/**', (req, res) => {
     const heroId = parseInt(req.params[0]);
+    console.log('Atualizando herói pelo id (Método POST) - id: ' + heroId);
     const foundHero = heroes.find(subject => subject.id === heroId);
   
     if (foundHero) {
         for (let attribute in foundHero) {
             if (req.body[attribute]) {
                 foundHero[attribute] = req.body[attribute];
+                console.log('Achou atributo:' + attribute );
                 console.log(`Set ${attribute} to ${req.body[attribute]} in hero: ${heroId}`);
             }
         }
