@@ -50,23 +50,24 @@ const powers = [
   ];
 
   app.get('/heroes', (req, res) => {
-    console.log('Returning heroes list');
+    console.log('Retornando lista de heróis');
     res.send(heroes);
   });
 
   app.get('/powers', (req, res) => {
-    console.log('Returning powers list');
+    console.log('Obtendo lista de poderes');
     res.send(powers);
   });
 
   app.get('/hero/**', (req, res) => {
+    console.log('Obtendo herói pelo id');
     const heroId = parseInt(req.params[0]);
     const foundHero = heroes.find(subject => subject.id === heroId);
     if (foundHero != null) {
       res.send(foundHero);
     } else {
-      res.statusCode(404);
-      res.send("Herói não foi encontrado");
+      console.log("Herói não foi encontrado");
+      res.status(404).send("Herói não foi encontrado");
     }
     
   });
