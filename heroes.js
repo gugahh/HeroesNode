@@ -73,8 +73,17 @@ const powers = [
     
   });
 
-  app.post('/hero/**', (req, res) => {
-    const heroId = parseInt(req.params[0]);
+  app.post('/heropost', (req, res) => {
+
+    console.log("Valor de id: " + req.body.id);
+    console.log("Valor de displayName: " + req.body.displayName);
+
+    var heroId = parseInt(req.params[0]);
+
+    if (isNaN(heroId) && req.body.id != null) {
+      heroId = parseInt(req.body.id); //Obtendo id a partir do JSON
+    }
+
     console.log('Atualizando herói pelo id (Método POST) - id: ' + heroId);
     const foundHero = heroes.find(subject => subject.id === heroId);
   
@@ -95,6 +104,9 @@ const powers = [
 
   // Exibe imagens hospedadas em /img
   app.use('/img', express.static(path.join(__dirname,'img')));
+
+  // Exibe conteudo estatico hospedadas em /static
+  app.use('/static', express.static(path.join(__dirname,'static')));
 
   //Coloca a aplicacao em "loop" escutando na porta determinada
   console.log(`Heroes service listening on port ${port}`);
